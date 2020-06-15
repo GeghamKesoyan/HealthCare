@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"    
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"     
+      xmlns:jsf="http://xmlns.jcp.org/jsf"         
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"   
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">   
+
+    <f:view contracts="default" encoding="UTF-8" transient="false">
+        <ui:composition template="/template.xhtml">  
+            <ui:define name="head">
+
+            </ui:define>
+
+            <ui:define name="content">
+
+       
+
+                        
+                            <h1>Patient list</h1>
+
+                        
+                            <p:dataTable var="pp" value="#{patientBean.patientList}" rows="10"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                         rowsPerPageTemplate="5,10,15">
+                                <p:column headerText="Id">
+                                    <h:outputText value="#{pp.id}" />
+                                </p:column>
+                                
+                                <p:column headerText="active ">
+                                    <h:outputText value="#{pp.active}" />
+                                </p:column>
+                                    
+                                <p:column headerText="birthdate">
+                                    <h:outputText value="#{pp.birthdate}" />
+                                </p:column>
+
+                                <p:column headerText="gender">
+                                    <h:outputText value="#{pp.gender}" />
+                                </p:column>
+
+                                <p:column headerText="Name">
+                                    <h:outputText value="#{pp.name.text}" />
+                                </p:column>
+
+                                <p:column headerText="Desease Status">
+                                    <h:outputText value="#{pp.deceasedBoolean}" />
+                                </p:column>
+
+                                <p:column headerText="DeseaseDate">
+                                    <h:outputText value="#{pp.deceasedDateTime}" />
+                                </p:column>
+
+                                <p:column headerText="address">
+                                    <h:outputText value="#{pp.address.country}" />
+                                </p:column>
+
+                                <p:column headerText="language">
+                                    <h:outputText value="#{pp.language}" />
+                                </p:column>
+                                
+                                <p:column headerText="practitioner Name">
+                                    <h:outputText value="#{pp.practitionerName.text}" />
+                                </p:column>
+                                
+                                <p:column headerText="practitioner Surname">
+                                    <h:outputText value="#{pp.practitionerName.family}" />
+                                </p:column>
+                                
+                                <p:column headerText="Consent Status">
+                                    <h:outputText value="#{pp.status}" />
+                                </p:column>
+                                
+                                <p:column headerText="Consent start date">
+                                    <h:outputText value="#{pp.provision.period.startDate}" />
+                                </p:column>
+                                
+                                <p:column headerText="Consent end date">
+                                    <h:outputText value="#{pp.provision.period.endDate}" />
+                                </p:column>
+                                
+                                
+                                <p:column headerText="View/Update">
+                                    <h:outputLink value="#{request.contextPath}/pages/registerPatient/form1.jsf">
+                                        <h:outputText value="#{i18n.update}"/>
+                                        <f:param name="patientId" value="#{pp.id}"/>
+                                    </h:outputLink> 
+                                </p:column>
+
+                            </p:dataTable>
+
+
+
+                
+
+            </ui:define>
+
+
+        </ui:composition>
+    </f:view>
+</html>
